@@ -28,7 +28,7 @@
 		<dependency>
 			<groupId>org.jodd</groupId>
 			<artifactId>jodd-bean</artifactId>
-			<version>3.9</version>
+			<version>5.0.13</version>
 		</dependency>
 		<dependency>
 			<groupId>ognl</groupId>
@@ -50,5 +50,6 @@
 			<artifactId>logback-core</artifactId>
 			<version>1.1.8</version>
 		</dependency>-->
+
 	</dependencies>
 </project>

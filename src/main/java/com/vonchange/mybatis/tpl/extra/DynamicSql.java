@@ -1,14 +1,13 @@
 package com.vonchange.mybatis.tpl.extra;
 
+import com.vonchange.mybatis.config.Constant;
+import com.vonchange.mybatis.tpl.EntityUtil;
 import com.vonchange.mybatis.tpl.clazz.ClazzUtils;
-import com.vonchange.mybatis.tpl.exception.MyRuntimeException;
+import com.vonchange.mybatis.tpl.exception.MybatisMinRuntimeException;
+import com.vonchange.mybatis.tpl.map.HashMap;
 import com.vonchange.mybatis.tpl.model.EntityField;
 import com.vonchange.mybatis.tpl.model.EntityInfo;
-import com.vonchange.mybatis.tpl.EntityUtil;
-import com.vonchange.mybatis.tpl.map.HashMap;
 import com.vonchange.mybatis.tpl.sql.SqlCommentUtil;
-import jodd.bean.BeanUtil;
-import jodd.bean.BeanUtilBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -172,7 +171,7 @@ public class DynamicSql {
         String[] conditions = condition.split(",");
         for (String cond : conditions) {
             if (null == conditionAliasMap.get(cond.trim())) {
-                throw new MyRuntimeException(cond + "不能识别");
+                throw new MybatisMinRuntimeException(cond + "不能识别");
             }
             resultMap.put(conditionAliasMap.get(cond.trim()), conditionMap.get(conditionAliasMap.get(cond.trim())));
         }
@@ -244,10 +243,10 @@ public class DynamicSql {
     }
 
     private static Object getValue(Map<String, Object> param, String named) {
-        BeanUtil beanUtil = new BeanUtilBean();
+       // BeanUtil beanUtil = new BeanUtilBean();
         Object value;
         try {
-            value = beanUtil.getProperty(param, named);
+            value = Constant.BeanUtils.getProperty(param, named);
         } catch (Exception e) {
             return null;
         }

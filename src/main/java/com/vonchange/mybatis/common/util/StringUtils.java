@@ -16,7 +16,141 @@
  */
 package com.vonchange.mybatis.common.util;
 
+import jodd.template.StringTemplateParser;
+import jodd.util.StringUtil;
+
+import java.text.MessageFormat;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringUtils {
+    public static String uuid() {
+        String uuid = UUID.randomUUID().toString();
+        return StringUtil.remove(uuid, "-");
+    }
+    public static boolean isBlank(final CharSequence cs) {
+        int strLen;
+        if (cs == null || (strLen = cs.length()) == 0) {
+            return true;
+        }
+        for (int i = 0; i < strLen; i++) {
+            if (Character.isWhitespace(cs.charAt(i)) == false) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isNotBlank(final CharSequence cs) {
+        return !isBlank(cs);
+    }
+    /**
+     * 简单模板实现 String str = "I'm not a {0}, age is {1,number,short}", height is
+     * {2,number,#.#};
+     *
+     * @param pattern
+     * @param arguments
+     * @return String
+     */
+    public static String format(String pattern, Object... arguments) {
+        MessageFormat temp = new MessageFormat(pattern);
+        return temp.format(arguments);
+    }
+    public static String strNums(String str, String split, int num) {
+        if(num==0){
+            return "";
+        }
+        StringBuilder fullStr = new StringBuilder();
+        for (int i = 0; i < num; i++) {
+            fullStr.append(str).append(split);
+        }
+        return fullStr.substring(0, fullStr.length()-split.length());
+    }
+    public static String strList(List<String> strs, String split) {
+        if(null==strs||strs.isEmpty()){
+            return "";
+        }
+        StringBuilder fullStr = new StringBuilder();
+        for (String string : strs) {
+            fullStr.append(string).append(split);
+        }
+        return fullStr.substring(0, fullStr.length()-split.length());
+    }
+    public static Boolean isNull(Object obj) {
+        if (null == obj) {
+            return true;
+        }
+        String str = String.valueOf(obj);
+        if (StringUtil.isBlank(str)) {
+            return true;
+        }
+        return false;
+    }
+    public static String StrList(List<String> strs, String split) {
+        if(null==strs||strs.size()==0){
+            return "";
+        }
+        StringBuffer fullStr = new StringBuffer();
+        for (String string : strs) {
+            fullStr.append(string).append(split);
+        }
+        return fullStr.substring(0, fullStr.length()-split.length());
+    }
+    public static final char UNDERLINE='_';
+    public static String camelToUnderline(String param){
+        if (param==null||"".equals(param.trim())){
+            return "";
+        }
+        int len=param.length();
+        StringBuilder sb=new StringBuilder(len);
+        for (int i = 0; i < len; i++) {
+            char c=param.charAt(i);
+            if (Character.isUpperCase(c)){
+                sb.append(UNDERLINE);
+                sb.append(Character.toLowerCase(c));
+            }else{
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 正则表达式 实现
+     * @param tplStr
+     * @param data
+     * @return
+     */
+    public static String tplByMap(String tplStr, Map<String, Object> data) {
+        Matcher m = Pattern.compile("\\$\\{([\\w\\.]*)\\}").matcher(tplStr);
+        List<String> patternList = new ArrayList<String>();
+        List<String> replaceStrList = new ArrayList<String>();
+        while (m.find()) {
+            String group = m.group();
+            patternList.add(group);
+            group = group.replaceAll("\\$|\\{|\\}", "");
+            String value = "";
+            if (null != data.get(group)) {
+                value = String.valueOf(data.get(group));
+            }
+            replaceStrList.add(value);
+            //tplStr = tplStr.replace(m.group(), value);
+        }
+        tplStr= StringUtils.replaceEach(tplStr, patternList.toArray(new String[patternList.size()]), replaceStrList.toArray(new String[replaceStrList.size()]));
+        return tplStr;
+    }
+
+    public static String tpl(String tplStr, Map<String, Object> data) {
+        StringTemplateParser stp = new StringTemplateParser();
+
+        return stp.parse(tplStr,macroName -> {
+           // public String resolve(String macroName) {
+                return ConvertUtil.toString(data.get(macroName));
+           // }
+        });
+    }
+
     public static String capitalize(final String str) {
         int strLen;
         if (str == null || (strLen = str.length()) == 0) {
@@ -176,5 +310,27 @@ public class StringUtils {
         }
 
         return replaceEach(result, searchList, replacementList, repeat, timeToLive - 1);
+    }
+    public static boolean endsWith(final CharSequence str, final CharSequence suffix) {
+        return endsWith(str, suffix, false);
+    }
+    private static boolean endsWith(final CharSequence str, final CharSequence suffix, final boolean ignoreCase) {
+        if (str == null || suffix == null) {
+            return str == null && suffix == null;
+        }
+        if (suffix.length() > str.length()) {
+            return false;
+        }
+        final int strOffset = str.length() - suffix.length();
+        return CharSequenceUtils.regionMatches(str, ignoreCase, strOffset, suffix, 0, suffix.length());
+    }
+    public static void main(String[] args) {
+
+        String template = "Hello ${foo}. Today is ${dayName}.";
+        // prepare data
+        Map<String, Object> map = new HashMap<>();
+        map.put("foo", "Jodd");
+        map.put("dayName", "Sunday");
+        System.out.println(tpl(template,map));
     }
 }

@@ -1,7 +1,7 @@
 package com.vonchange.mybatis.tpl;
 
 
-import com.vonchange.mybatis.tpl.exception.MyRuntimeException;
+import com.vonchange.mybatis.tpl.exception.MybatisMinRuntimeException;
 import com.vonchange.mybatis.tpl.extra.DynamicSql;
 import com.vonchange.mybatis.tpl.model.SqlWithParam;
 import com.vonchange.mybatis.common.util.StringUtils;
@@ -91,7 +91,7 @@ public class MybatisTpl {
                  }else {
                      MetaObject metaObject = configuration.newMetaObject(param);
                      if(!metaObject.hasGetter(propertyName)){
-                         throw  new MyRuntimeException(propertyName+"占位符值不存在!");
+                         throw  new MybatisMinRuntimeException(propertyName+"占位符值不存在!");
                      }
                      value = metaObject.getValue(propertyName);
                  }
