@@ -4,8 +4,7 @@ import java.util.Map;
 
 /**
  *  实体信息
- * @author von_change@163.com
- * @date 2015-6-14 下午12:44:06
+ * @author vonchange@163.com
  */
 public class EntityInfo {
 	private String entityName;

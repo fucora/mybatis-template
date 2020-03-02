@@ -5,9 +5,7 @@ import com.vonchange.mybatis.common.util.StringUtils;
 
 /**
  * Orm组件
- * 
- * @author von_change@163.com
- * @date 2015-6-14 下午1:02:52
+ *
  */
 public class OrmUtil {
 	/**

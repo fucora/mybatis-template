@@ -36,10 +36,6 @@ import java.util.Map;
  * @author Thomas Risberg
  * @author Juergen Hoeller
  * @since 2.0
- * @see #addValue(String, Object)
- * @see #addValue(String, Object, int)
- * @see #registerSqlType
- * @see
  */
 public class MapSqlParameterSource extends AbstractSqlParameterSource {
 
@@ -49,7 +45,6 @@ public class MapSqlParameterSource extends AbstractSqlParameterSource {
 	/**
 	 * Create an empty MapSqlParameterSource,
 	 * with values to be added via {@code addValue}.
-	 * @see #addValue(String, Object)
 	 */
 	public MapSqlParameterSource() {
 	}

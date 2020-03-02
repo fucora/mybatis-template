@@ -3,8 +3,7 @@ package com.vonchange.mybatis.tpl.model;
 
 /**
  * 实体字段信息
- * @author von_change@163.com
- * @date 2015-6-14 下午12:44:21
+ * @author vonchange@163.com
  */
 public class EntityField {
 	private String fieldName;
@@ -14,7 +13,8 @@ public class EntityField {
 	private Boolean isColumn=false;
 	private Boolean isId=false;
 	private  String function;
-	private Boolean ignoreUpdate;
+	//private Boolean ignoreDupUpdate;
+	private Boolean updateNotNull;
 	public String getFieldName() {
 		return fieldName;
 	}
@@ -52,12 +52,12 @@ public class EntityField {
 		this.isColumn = isColumn;
 	}
 
-	public Boolean getIgnoreUpdate() {
-		return ignoreUpdate;
+	public Boolean getUpdateNotNull() {
+		return updateNotNull;
 	}
 
-	public void setIgnoreUpdate(Boolean ignoreUpdate) {
-		this.ignoreUpdate = ignoreUpdate;
+	public void setUpdateNotNull(Boolean updateNotNull) {
+		this.updateNotNull = updateNotNull;
 	}
 
 	public String getFunction() {

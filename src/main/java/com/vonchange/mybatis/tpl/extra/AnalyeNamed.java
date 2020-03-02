@@ -1,10 +1,7 @@
 package com.vonchange.mybatis.tpl.extra;
 
 /**
- * @author 冯昌义
- * @brief
- * @details
- * @date 2018/1/9.
+ * 分析后的实体类
  */
 public class AnalyeNamed {
     private String condition;

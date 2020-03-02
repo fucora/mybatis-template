@@ -19,11 +19,7 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 
 /**
- *
- * @author 冯昌义
- * @brief
- * @details
- * @date 2017/12/12.
+ * mybatis 模版主要代码
  */
 public class MybatisTpl {
     private static   Logger logger = LoggerFactory.getLogger(MybatisTpl.class);

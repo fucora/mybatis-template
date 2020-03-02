@@ -1,7 +1,9 @@
 package com.vonchange.mybatis.tpl;
 
 import com.vonchange.mybatis.tpl.annotation.ColumnNot;
-import com.vonchange.mybatis.tpl.annotation.IgnoreUpdate;
+
+
+import com.vonchange.mybatis.tpl.annotation.UpdateNotNull;
 import com.vonchange.mybatis.tpl.model.EntityField;
 import com.vonchange.mybatis.tpl.model.EntityInfo;
 import jodd.util.StringUtil;
@@ -67,7 +69,7 @@ public class EntityUtil {
             if (isBaseType) {
                 entityField.setIsColumn(true);
             }
-            entityField.setIgnoreUpdate(false);
+            entityField.setUpdateNotNull(false);
             Annotation[] annotations = field.getAnnotations();
             for (Annotation annotation : annotations) {
                 if (annotation instanceof Id) {
@@ -81,8 +83,8 @@ public class EntityUtil {
                     entityField.setIsColumn(false);
                     continue;
                 }
-                if (annotation instanceof IgnoreUpdate) {
-                    entityField.setIgnoreUpdate(true);
+                if (annotation instanceof UpdateNotNull) {
+                    entityField.setUpdateNotNull(true);
                 }
             }
             entityFieldMap.put(fieldName, entityField);

@@ -5,8 +5,7 @@ import java.util.Map;
 
 /**
  *支持链式调用的HashMap<String, Object>
- * @author von_change@163.com
- * @date 2015-6-14 下午10:38:53
+ * @author vonchange@163.com
  */
 public class MyHashMap extends HashMap<String, Object> implements Map<String, Object>{
 

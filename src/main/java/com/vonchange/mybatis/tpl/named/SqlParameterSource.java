@@ -31,7 +31,6 @@ package com.vonchange.mybatis.tpl.named;
  * @author Thomas Risberg
  * @author Juergen Hoeller
  * @since 2.0
-
  */
 public interface SqlParameterSource {
 
