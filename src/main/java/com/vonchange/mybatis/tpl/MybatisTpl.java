@@ -38,8 +38,8 @@ public class MybatisTpl {
          sqlInXml=sqlInXml.trim();
          if(sqlInXml.contains("</")){
              sqlInXml="<script>"+sqlInXml+"</script>";
-             sqlInXml =  StringUtils.replaceEach(sqlInXml,new String[]{" > "," < "," >= "," <= "},
-                     new String[]{" &gt; "," &lt; "," &gt;= "," &lt;= "});
+             sqlInXml =  StringUtils.replaceEach(sqlInXml,new String[]{" > "," < "," >= "," <= "," <> "},
+                     new String[]{" &gt; "," &lt; "," &gt;= "," &lt;= "," &lt;&gt; "});
          }
          if(null==parameter){
              parameter=new LinkedHashMap<>();
