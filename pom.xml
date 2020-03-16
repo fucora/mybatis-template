@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>mybatis-template</artifactId>
-	<version>1.0</version>
+	<version>1.2</version>
 	<packaging>jar</packaging>
 	<name>mybatis-template</name>
 	<description>mybatis-template</description>
@@ -20,11 +20,6 @@
 			<artifactId>mybatis</artifactId>
 			<version>3.4.5</version>
 		</dependency>
-	<!--	<dependency>
-			<groupId>org.javassist</groupId>
-			<artifactId>javassist</artifactId>
-			<version>3.22.0-CR2</version>
-		</dependency>-->
 		<dependency>
 			<groupId>org.jodd</groupId>
 			<artifactId>jodd-bean</artifactId>
@@ -45,11 +40,6 @@
 			<artifactId>logback-classic</artifactId>
 			<version>1.1.8</version>
 		</dependency>
-		<!--<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-			<version>1.1.8</version>
-		</dependency>-->
 
 	</dependencies>
 </project>
